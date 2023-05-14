@@ -1,11 +1,12 @@
 {
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "cross-env NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
     "start": "next start"
   },
   "dependencies": {
+    "cross-env": "^7.0.3",
     "date-fns": "^2.29.3",
     "gray-matter": "^4.0.3",
     "next": "latest",

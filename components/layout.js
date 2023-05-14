@@ -5,9 +5,10 @@ import Script from 'next/script'
 import styles from './layout.module.css'
 import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
+import { hr } from 'date-fns/locale'
 
-const name = '[Your Name]'
-export const siteTitle = 'Next.js Sample Website'
+const name = '中原 泳青'
+export const siteTitle = 'Nakahara Lab. Website'
 
 export default function Layout({ children, home }) {
   return (
@@ -16,7 +17,7 @@ export default function Layout({ children, home }) {
         <link rel="icon" href="/favicon.ico" />
         <meta
           name="description"
-          content="Learn how to build a personal website using Next.js"
+          content="Nakahara Lab. Research Website"
         />
         <meta
           property="og:image"
@@ -39,20 +40,20 @@ export default function Layout({ children, home }) {
           <>
             <Image
               priority
-              src="/images/profile.jpg"
+              src="/images/syq.jpg"
               className={utilStyles.borderCircle}
-              height={144}
-              width={144}
+              height={108}
+              width={108}
               alt={name}
             />
-            <h1 className={utilStyles.heading2Xl}>{name}</h1>
+            <h1 className={utilStyles.headingLg}>{name}</h1>
           </>
         ) : (
           <>
             <Link href="/">
               <Image
                 priority
-                src="/images/profile.jpg"
+                src="/images/syq.jpg"
                 className={utilStyles.borderCircle}
                 height={108}
                 width={108}
@@ -68,7 +69,13 @@ export default function Layout({ children, home }) {
         )}
       </header>
       <main>{children}</main>
-      {!home && (
+      {home ? (
+        <footer> 
+          <hr width="100%" /> 
+          <div>email: </div>
+          <Link href="https://dept.chs.nihon-u.ac.jp/information_science/"> 日本大学情報科学科</Link>
+        </footer>
+      ):(
         <div className={styles.backToHome}>
           <Link href="/">← Back to home</Link>
         </div>
