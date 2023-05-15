@@ -1,28 +1,28 @@
 import Layout from '../../components/layout'
-import { getAllPostIds, getPostData } from '../../lib/posts'
+import { getAllFileIds, getFileData } from '../../lib/papers_ds'
 import Head from 'next/head'
 import Date from '../../components/date'
 import utilStyles from '../../styles/utils.module.css'
 
-export default function Post({ postData }) {
+export default function Page({ pageData }) {
   return (
     <Layout>
       <Head>
-        <title>{postData.title}</title>
+        <title>{pageData.title}</title>
       </Head>
       <article>
-        <h1 className={utilStyles.headingXl}>{postData.title}</h1>
+        <h1 className={utilStyles.headingXl}>{pageData.title}</h1>
         <div className={utilStyles.lightText}>
-          Updated: <Date dateString={postData.date} />
+          Updated: <Date dateString={pageData.date} />
         </div>
-        <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+        <div dangerouslySetInnerHTML={{ __html: pageData.contentHtml }} />
       </article>
     </Layout>
   )
 }
 
 export async function getStaticPaths() {
-  const paths = getAllPostIds()
+  const paths = getAllFileIds()
   return {
     paths,
     fallback: false
@@ -30,10 +30,10 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const postData = await getPostData(params.id)
+  const pageData = await getFileData(params.id)
   return {
     props: {
-      postData
+      pageData
     }
   }
 }
